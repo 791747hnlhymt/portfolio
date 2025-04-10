@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aiden's Terminal Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #0d0d0d;
+            color: #00FF00;
+            font-family: 'Fira Code', monospace;
+            padding: 2rem;
+        }
+
+        .terminal {
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .line {
+            margin-bottom: 0.4rem;
+        }
+
+        .user {
+            color: #00FF00;
+        }
+
+        .path {
+            color: #00AA00;
+        }
+
+        .cmd {
+            color: #00FFFF;
+            font-weight: bold;
+        }
+
+        /* Optional: blinking cursor effect */
+        .cursor::after {
+            content: "_";
+            animation: blink 1s step-start infinite;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="terminal" id="terminal">
+        <span class="user">abennett747@phm.k12.in.us</span>:<span class="path">~/portfolio</span>$ <span class="cmd">whoami</span>
+        <span class="path">$echo</span>:<span class="cmd">Aiden Bennett</span>
+        <div class="line">
+            <span class="user">abennett747@phm.k12.in.us</span>:<span class="path">~/portfolio</span>$ <span class="cmd">cat about.txt</span>
+        </div>
+        <div class="line" id="typed-line-1" class="cursor"></div>
+    </div>
+
+    <script>
+     const fakeType = (element, text, delay = 50, callback = null) => {
+    let i = 0;
+    const interval = setInterval(() => {
+        element.textContent += text[i];
+        i++;
+        if (i >= text.length) {
+            clearInterval(interval);
+            if (callback) callback();
+        }
+    }, delay);
+};
+
+const terminal = document.getElementById("terminal");
+
+const message1 = "Hello my name is Aiden! I am a passionate student programmer currently attending high school soon to be senior. My journey in programming has been fueled by a desire to learn more and faceing new challenges. I am costently learning almost evrey day on how to improve my self as a programmer.";
+const message2 = "I have been programming for over two and a half years, gaining expertise in a range of languages including HTML, CSS, JavaScript, Python, C++, Java, and Kotlin. My experience spans a variety of fields, from 2D game development and web development to robotics and data science, providing me with a well-rounded skill set in both software and hardware-related projects.";
+const message3 = "For short websites will be 15.00$. Medium-sized websites will be 30.00$. Big websites will be 50.00-70.00$ Based on difficulty. ";
+const message4 = "Contact me through email.";
+const asciiArt = `*u*    *-*    *n*  `;
+
+const line1 = document.getElementById("typed-line-1");
+
+fakeType(line1, message1, 45, () => {
+    setTimeout(() => {
+        // Add new command line
+        const newCmd = document.createElement("div");
+        newCmd.classList.add("line");
+        newCmd.innerHTML = `<span class="user">abennett747@phm.k12.in.us</span>:<span class="path">~/portfolio</span>$ <span class="cmd">cat skills.txt</span>`;
+        terminal.appendChild(newCmd);
+
+        // Add new output line
+        const newLine = document.createElement("div");
+        newLine.classList.add("line");
+        terminal.appendChild(newLine);
+
+        // Scroll to bottom
+        terminal.scrollTop = terminal.scrollHeight;
+
+        // Type second message
+        fakeType(newLine, message2, 45, () => {
+            setTimeout(() => {
+                // Add more defined ASCII art of a guy wearing glasses
+                const asciiLine = document.createElement("div");
+                asciiLine.classList.add("line");
+                asciiLine.textContent = asciiArt;
+                terminal.appendChild(asciiLine);
+
+                // Add new command line for GitHub link
+                const newCmd = document.createElement("div");
+                newCmd.classList.add("line");
+                newCmd.innerHTML = `$echo</span>:<span class="path">~/portfolio</span>$ <a href="https://github.com/791747hnlhymt" target="_blank">GitHub</a>`;
+                terminal.appendChild(newCmd);
+
+                // Scroll to bottom
+                terminal.scrollTop = terminal.scrollHeight;
+
+                // Add the third message
+                setTimeout(() => {
+                    const thirdCmd = document.createElement("div");
+                    thirdCmd.classList.add("line");
+                    thirdCmd.innerHTML = `<span class="user">abennett747@phm.k12.in.us</span>:<span class="path">~/portfolio</span>$ <span class="cmd">cat pricing.txt</span>`;
+                    terminal.appendChild(thirdCmd);
+
+                    // Add new output line for the third message
+                    const thirdLine = document.createElement("div");
+                    thirdLine.classList.add("line");
+                    terminal.appendChild(thirdLine);
+
+                    // Scroll to bottom
+                    terminal.scrollTop = terminal.scrollHeight;
+
+                    // Type third message
+                    fakeType(thirdLine, message3, 45);
+                }, 500);
+                
+                setTimeout(() => {
+                    const thirdCmd = document.createElement("div");
+                    thirdCmd.classList.add("line");
+                    thirdCmd.innerHTML = `<span class="user">abennett747@phm.k12.in.us</span>:<span class="path">~/portfolio</span>$ <span class="cmd">cat pricing.txt</span>`;
+                    terminal.appendChild(thirdCmd);
+
+                    // Add new output line for the third message
+                    const thirdLine = document.createElement("div");
+                    thirdLine.classList.add("line");
+                    terminal.appendChild(thirdLine);
+
+                    // Scroll to bottom
+                    terminal.scrollTop = terminal.scrollHeight;
+
+                    // Type third message
+                    fakeType(thirdLine, message4, 45);
+                }, 500);
+            }, 500);
+        });
+    }, 500);
+});
+
+
+    </script>
+</body>
+</html>
